@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PokemonCard from '../Components/PokemonCard/PokemonCard'
 
 const App = () => {
 
@@ -32,13 +33,13 @@ const App = () => {
       <div className="pokedex-container">
         <div className="pokemonCard-container">
           {pokemons.map( (pokemonStats, index) => 
-            <div key={index}>
-              <p>Index: {index}</p>
-              <p>Id: {pokemonStats.id}</p>
-              <p>Image: {pokemonStats.sprites.other.dream_world.front_default}</p>
-              <p>Name: {pokemonStats.name}</p>
-              <p>Type: {pokemonStats.types[0].type.name}</p>
-            </div>)}
+            <PokemonCard
+              key={index}
+              id={pokemonStats.id}
+              image={pokemonStats.sprites.other.dream_world.front_default}
+              name={pokemonStats.name}
+              type={pokemonStats.types[0].type.name}
+            />)}
           
         </div>
           <button className="load-more" onClick={() => getPokemons()}>Load more</button>

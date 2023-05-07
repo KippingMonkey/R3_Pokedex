@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useEffect, useState } from 'react'
 import PokemonCard from '../Components/PokemonCard/PokemonCard'
 
@@ -28,10 +29,10 @@ const App = () => {
  }, [])
 
   return (
-    <div className="app-contaner">
+    <div className="app-container">
       <h1>My pokedex</h1>
       <div className="pokedex-container">
-        <div className="pokemonCard-container">
+        <div className="pokemon-card-container">
           {pokemons.map( (pokemonStats, index) => 
             <PokemonCard
               key={index}

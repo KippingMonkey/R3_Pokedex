@@ -1,9 +1,10 @@
+import './PokemonCard.css';
 import React from 'react'
 
 const PokemonCard = ({ id, image, name, type }) => {
-  
+const style = type + " pokemon-card";
   return (
-    <div>
+    <div className={style}>
       <div className="number"><small>#0{id}</small></div>
       <img src={image} alt={name} />
       <div className="detail-wrapper">

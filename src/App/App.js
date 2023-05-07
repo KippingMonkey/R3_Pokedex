@@ -1,11 +1,12 @@
 import './App.css';
-import React, { useEffect, useState } from 'react'
-import PokemonCard from '../Components/PokemonCard/PokemonCard'
+import React, { useEffect, useState } from 'react';
+import PokemonCard from '../Components/PokemonCard/PokemonCard';
+import  * as Constants from '../Constants';
 
 const App = () => {
 
    const[pokemons, setPokemons] = useState([])
-   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+   const [loadMore, setLoadMore] = useState(`${Constants.urls.baseURL}${Constants.urls.limit}`)
 
   const getPokemons = async () => {
     const res = await fetch(loadMore)
@@ -15,7 +16,7 @@ const App = () => {
 
     function getPokemonData(results)  {
       results.forEach( async pokemon => {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+        const res = await fetch(`${Constants.urls.baseURL}/${pokemon.name}`)
         const data =  await res.json()
         setPokemons( currentList => [...currentList, data])
         pokemons.sort((a, b) => a.id - b.id)
@@ -30,7 +31,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <h1>My pokedex</h1>
+      <h1>{Constants.app.header}</h1>
       <div className="pokedex-container">
         <div className="pokemon-card-container">
           {pokemons.map( (pokemonStats, index) => 
@@ -43,7 +44,7 @@ const App = () => {
             />)}
           
         </div>
-          <button className="load-more" onClick={() => getPokemons()}>Load more</button>
+          <button className="load-more" onClick={() => getPokemons()}>{Constants.components.loadmore}</button>
       </div>
     </div>
   );

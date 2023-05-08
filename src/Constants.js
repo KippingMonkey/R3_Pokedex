@@ -12,5 +12,5 @@ export const classNames = {
 
 export const urls = {
   baseURL: "https://pokeapi.co/api/v2/pokemon",
-  limit: "?limit=20",
+  limit: "?limit=1281",
 }

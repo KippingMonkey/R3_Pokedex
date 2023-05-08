@@ -5,11 +5,15 @@ const PokemonCard = ({ id, image, name, type }) => {
 const style = type + " pokemon-card";
   return (
     <div className={style}>
-      <div className="number"><small>#0{id}</small></div>
-      <img src={image} alt={name} />
-      <div className="detail-wrapper">
-        <h3>{name}</h3>
-        <small>Type: {type}</small>
+      <div className="pokemon-card-image-container">
+        <img src={image} alt={name} />
+      </div>
+      <div className="pokemon-card-text-container">
+        <div className="number"><h5>#0{id}</h5></div>
+        <div className="detail-wrapper">
+          <h3>{name}</h3>
+          <small>Type: {type}</small>
+        </div>
       </div>
     </div>
   )

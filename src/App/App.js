@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import PokemonCard from '../Components/PokemonCard/PokemonCard';
+import Btn from '../Components/Button/Btn';
 import  * as Constants from '../Constants';
 
 const App = () => {
@@ -42,9 +43,11 @@ const App = () => {
               name={pokemonStats.name}
               type={pokemonStats.types[0].type.name}
             />)}
-          
         </div>
-          <button className="load-more" onClick={() => getPokemons()}>{Constants.components.loadmore}</button>
+        <Btn className={Constants.classNames.loadMore}
+             text={Constants.components.loadMore}
+             whenClicked={() => getPokemons()}
+        />
       </div>
     </div>
   );

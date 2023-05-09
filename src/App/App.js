@@ -13,7 +13,7 @@ const App = () => {
     const res = await fetch(loadMore)
     const data = await res.json()
 
-    setLoadMore(data.next)
+    // setLoadMore(data.next)
 
     function getPokemonData(results)  {
       results.forEach( async pokemon => {

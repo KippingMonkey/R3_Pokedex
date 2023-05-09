@@ -7,10 +7,18 @@ import  * as Constants from '../Constants';
 
 const App = () => {
 
-  const[pokemons, setPokemons] = useState([])
+  const[allPokemons, setAllPokemons] = useState([])
+  const[currentPokemonList, setCurrentPokemonList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pokemonsLoaded, setPokemonsLoaded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const pokemonsPerPage = 12;
+  const indexOfLastPokemon = currentPage * pokemonsPerPage;
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
   const color = "#000";
+  
+
 
   const getPokemons = async () => {
     setPokemonsLoaded(true);
@@ -22,13 +30,19 @@ const App = () => {
       results.forEach( async pokemon => {
         const res = await fetch(`${Constants.urls.baseURL}/${pokemon.name}`)
         const data =  await res.json()
-        setPokemons( currentList => [...currentList, data])
-        pokemons.sort((a, b) => a.id - b.id)
+        setAllPokemons( currentList => [...currentList, data])
+        allPokemons.sort((a, b) => a.id - b.id)
         setLoading(false);
       })
     }
     getPokemonData(data.results)
   }
+
+  useEffect(() => {
+    if (allPokemons.length > 0) {
+      setCurrentPokemonList(allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon));
+    }
+  }, [allPokemons]);
 
   return (
     <div className="app-container">
@@ -50,7 +64,7 @@ const App = () => {
     }
       <div className="pokedex-container">
         <div className="pokemon-card-container">
-          {pokemons.map( (pokemonStats, index) => 
+          {currentPokemonList.map( (pokemonStats, index) => 
             <PokemonCard
               key={index}
               id={pokemonStats.id}

@@ -18,7 +18,9 @@ const App = () => {
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
   const color = "#000";
   
-
+    const delay = (ms) => new Promise(
+  resolve => setTimeout(resolve, ms)
+  );
 
   const getPokemons = async () => {
     setPokemonsLoaded(true);
@@ -30,6 +32,7 @@ const App = () => {
       results.forEach( async pokemon => {
         const res = await fetch(`${Constants.urls.baseURL}/${pokemon.name}`)
         const data =  await res.json()
+        await delay(2500);
         setAllPokemons( currentList => [...currentList, data])
         allPokemons.sort((a, b) => a.id - b.id)
         setLoading(false);

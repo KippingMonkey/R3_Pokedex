@@ -3,12 +3,8 @@ export const app = {
 }
 
 export const components = {
-  loadMore: "Load more",
+  loadPokemons: "Load pokemons",
 } 
-
-export const classNames = {
-  loadMore: "load-more",
-}
 
 export const urls = {
   baseURL: "https://pokeapi.co/api/v2/pokemon",

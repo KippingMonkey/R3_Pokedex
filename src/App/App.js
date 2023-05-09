@@ -8,7 +8,6 @@ import  * as Constants from '../Constants';
 const App = () => {
 
   const[pokemons, setPokemons] = useState([])
-  // const [loadMore, setLoadMore] = useState(`${Constants.urls.baseURL}${Constants.urls.limit}`)
   const [loading, setLoading] = useState(false);
   const [pokemonsLoaded, setPokemonsLoaded] = useState(false);
   const color = "#000";
@@ -18,8 +17,6 @@ const App = () => {
     setLoading(true);
     const res = await fetch(`${Constants.urls.baseURL}${Constants.urls.limit}`)
     const data = await res.json()
-
-    // setLoadMore(data.next)
 
     function getPokemonData(results)  {
       results.forEach( async pokemon => {

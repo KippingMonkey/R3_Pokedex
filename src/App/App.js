@@ -4,18 +4,15 @@ import ClipLoader from "react-spinners/ClipLoader";
 import PokemonCard from '../Components/PokemonCard/PokemonCard';
 import Btn from '../Components/Button/Btn';
 import  * as Constants from '../Constants';
+import Pagination from '../Components/Pagination/Pagination';
 
 const App = () => {
 
-  const[allPokemons, setAllPokemons] = useState([])
-  const[currentPokemonList, setCurrentPokemonList] = useState([]);
+  const [allPokemons, setAllPokemons] = useState([])
   const [loading, setLoading] = useState(false);
   const [pokemonsLoaded, setPokemonsLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-
-  const pokemonsPerPage = 12;
-  const indexOfLastPokemon = currentPage * pokemonsPerPage;
-  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
+  const [pokemonsPerPage] = useState(6);
   const color = "#000";
   
     const delay = (ms) => new Promise(
@@ -41,11 +38,11 @@ const App = () => {
     getPokemonData(data.results)
   }
 
-  useEffect(() => {
-    if (allPokemons.length > 0) {
-      setCurrentPokemonList(allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon));
-    }
-  }, [allPokemons]);
+  const indexOfLastPokemon = currentPage * pokemonsPerPage;
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
+  const currentPokemonList = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+ 
 
   return (
     <div className="app-container">
@@ -76,7 +73,14 @@ const App = () => {
               type={pokemonStats.types[0].type.name}
             />)}
         </div>
+        {(!pokemonsLoaded || loading) ? null :
+        <Pagination
+          pokemonsPerPage={pokemonsPerPage}
+          pokemons={allPokemons.length}
+          paginate={paginate}/>
+        }
       </div>
+
     </div>
   );
 }

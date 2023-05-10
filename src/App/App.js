@@ -65,7 +65,7 @@ const App = () => {
             whenClicked={() => getPokemons()}
       /> 
     }
-      <div className="pokedex-container">
+      <div id="pokemon-gallery" className="pokedex-container">
         <div className="pokemon-card-container">
           {currentPokemonList.map( (pokemonStats, index) => 
             <PokemonCard

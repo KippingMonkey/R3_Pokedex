@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ClipLoader from "react-spinners/ClipLoader";
 import PokemonCard from '../Components/PokemonCard/PokemonCard';
 import Btn from '../Components/Button/Btn';
@@ -12,7 +12,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [pokemonsLoaded, setPokemonsLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage] = useState(6);
+  const [pokemonsPerPage] = useState(8);
   const color = "#000";
   
     const delay = (ms) => new Promise(

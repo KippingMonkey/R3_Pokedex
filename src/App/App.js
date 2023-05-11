@@ -71,6 +71,7 @@ const App = () => {
               image={pokemonStats.sprites.other.dream_world.front_default}
               name={pokemonStats.name}
               type={pokemonStats.types[0].type.name}
+              object={pokemonStats}
             />)}
         </div>
         {(!pokemonsLoaded || loading) ? null :

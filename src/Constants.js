@@ -4,6 +4,7 @@ export const app = {
 
 export const components = {
   loadPokemons: "Load pokemons",
+  addToFavorites: "I like it!",
 } 
 
 export const urls = {

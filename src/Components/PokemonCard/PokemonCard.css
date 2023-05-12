@@ -48,6 +48,10 @@
   text-transform: capitalize;
 }
 
+.detail-wrapper{
+  margin-bottom: 0.5rem;
+}
+
 .rock {
   background-color: rgb(148, 81, 81);
 }

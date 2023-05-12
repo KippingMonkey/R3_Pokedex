@@ -29,7 +29,7 @@ const App = () => {
       results.forEach( async pokemon => {
         const res = await fetch(`${Constants.urls.baseURL}/${pokemon.name}`)
         const data =  await res.json()
-        await delay(2500);
+        await delay(2000);
         setAllPokemons( currentList => [...currentList, data])
         allPokemons.sort((a, b) => a.id - b.id)
         setLoading(false);

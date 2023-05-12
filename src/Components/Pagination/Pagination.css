@@ -9,7 +9,8 @@
 
 .page-list{
     display: flex;
-    justify-content:space-around;
+    flex-wrap: wrap;
+    justify-content:center;
     list-style-type:none;
     gap: 0.5rem;
     padding: 0;

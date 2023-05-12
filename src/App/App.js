@@ -12,7 +12,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [pokemonsLoaded, setPokemonsLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage] = useState(8);
+  const [pokemonsPerPage] = useState(12);
   const color = "#000";
   
     const delay = (ms) => new Promise(

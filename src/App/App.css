@@ -24,7 +24,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 900px;
+  max-width: 1500px;
 }
 
 .pokemon-card-container {
@@ -32,4 +32,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 800px){
+  .pokemon-card-container{
+    flex-direction: column;
+  }
 }

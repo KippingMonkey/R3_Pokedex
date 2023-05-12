@@ -25,3 +25,12 @@
   border: none;
 }
 
+.btn.pokemon-card-add-to-favorites.selected{
+  height: 1.5rem;
+  font-size: 0.7rem;
+  color:blanchedalmond;
+  padding: 0.3rem 0.5rem;
+  background-color: rgba(248, 2, 2, 0.548);
+  border: none;
+}
+

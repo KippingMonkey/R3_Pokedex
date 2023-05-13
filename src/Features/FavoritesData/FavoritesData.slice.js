@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     list: [],
     quantity: 0,
+    selected: [],
 }
 
 const favoritesDataSlice = createSlice({
@@ -14,6 +15,9 @@ const favoritesDataSlice = createSlice({
         },
         storeQuantity: ( state, quantity )  => {
             state.quantity = quantity.payload;
+        },
+        storeSelected: ( state, selected )  => {
+            state.selected = selected.payload;
         }
     }
 });
@@ -21,6 +25,7 @@ const favoritesDataSlice = createSlice({
 export const {
                 storeList,
                 storeQuantity,
+                storeSelected
             } = favoritesDataSlice.actions;
             
 export default favoritesDataSlice.reducer;

@@ -19,6 +19,11 @@
   z-index: 5;
 }
 
+.header-options-container{
+  display: flex;
+  justify-content: space-between;
+}
+
 .pokedex-container {
   display: flex;
   flex-direction: column;

@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+h1{
+  margin: 0;
+  font-size: 2.5rem;
+}
+
 h3 {
   margin-bottom: 0.2rem;
 }

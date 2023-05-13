@@ -30,20 +30,20 @@
     height: 30px;
 }
 
+.page-list-item.active,
+.page-list-item:hover {
+    background: #95470b;
+}
+
 .page-number {
     color:blanchedalmond;
     text-decoration: none;
     cursor: pointer;
     padding: 0 0 3px 0;
-    
-   
-
 }
 
-.page.number .active {
-    color: #fff;
-    background: #95470b;
-    text-decoration: underline;
+.chevron{
+    font-size: 0.2rem;
 }
 
 .dots {
@@ -55,18 +55,4 @@
     display: inline-block;
 }
 
-.previous-page,
-.next-page {
-    color: #de6910;
-    cursor: pointer;
-    font-weight: 300;
-    font-size: 1.35em;
-    line-height: 34px;
-    display: inline-block;
-    vertical-align: top;
-    height: 34px;
-    width: 34px;
-    background: #fff;
-    border: 1px solid  #95470b;
-}
 

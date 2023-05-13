@@ -40,23 +40,29 @@ const App = () => {
     setLoading(false);
   }
   
-  const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const filteredPokemons = allPokemons.filter(
-    (pokemon) =>
-      pokemon.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
-
+  
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const indexOfLastPokemon = currentPage * pokemonsPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+    setCurrentPage(1);
+  };
 
+  const changeViewedList = () => {
+    setShowsAllPokemons(!showsAllPokemons)
+    setCurrentPage(1);
+  }
+
+  const filteredPokemons = allPokemons.filter( (pokemon) =>
+      pokemon.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
+  
   const renderedPokemons = showsAllPokemons ? 
-                           filteredPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon) : 
-                           favoritePokemons.list.slice(indexOfFirstPokemon, indexOfLastPokemon);
-
+  filteredPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon) : 
+  favoritePokemons.list.slice(indexOfFirstPokemon, indexOfLastPokemon);
+  
 
   return (
     <div className="app-container">
@@ -70,21 +76,22 @@ const App = () => {
         />
       </div>
       <h1>{Constants.app.header}</h1>
-      <div className="search-pokemons-container">
+      {pokemonsLoaded ? 
+        allPokemons.length === 0 ? null :
+      <div className="top-row-container">
         <input
+          className='search-input'
           type="text"
           placeholder={Constants.app.searchPlaceholder}
           value={searchTerm}
           onChange={handleInputChange}
         />
-      </div>
-      {pokemonsLoaded ? 
-        allPokemons.length === 0 ? null :
-      <Btn
+        <Btn
          className="change-viewed-list"
          text={showsAllPokemons ? Constants.components.myFavorites + favoritePokemons.quantity : Constants.components.allPokemons}
-         whenClicked={() => setShowsAllPokemons(!showsAllPokemons) } 
-      /> :
+         whenClicked={() => changeViewedList() } 
+         /> 
+      </div> :
       <Btn 
         className="load-pokemons"
         text={Constants.components.loadPokemons}
@@ -107,7 +114,7 @@ const App = () => {
         {(!pokemonsLoaded || loading) ? null :
         <Pagination
           pokemonsPerPage={pokemonsPerPage}
-          pokemons={showsAllPokemons ? allPokemons.length : renderedPokemons.length}
+          pokemons={showsAllPokemons ? filteredPokemons.length : favoritePokemons.list.length}
           currentPage={currentPage}
           paginate={paginate}/>
         }

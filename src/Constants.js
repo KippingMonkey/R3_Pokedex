@@ -1,6 +1,7 @@
 export const app = {
   header: "My pokedex",
-  noPokemonsMessage: "There are no pokemons here"
+  noPokemonsMessage: "There are no pokemons here",
+  searchPlaceholder: "Search for a pokemon"
 }
 
 export const components = {

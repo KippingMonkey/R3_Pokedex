@@ -12,7 +12,11 @@ const Pagination = ({ pokemonsPerPage, pokemons, currentPage, paginate}) => {
   }
  
   const handlePageClick = (pageNumber) => {
-    paginate(pageNumber);
+    console.log('Clicked page number:', pageNumber);
+  paginate(pageNumber);
+  currentPage = pageNumber;
+  console.log('Current page after paginate:', currentPage);
+
   }
 
   const RenderPrevious = () => {

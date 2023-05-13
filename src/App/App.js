@@ -14,8 +14,9 @@ const App = () => {
   const [pokemonsLoaded, setPokemonsLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [showsAllPokemons, setShowsAllPokemons] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('');
   const [pokemonsPerPage] = useState(12);
-  const favoritePokemons = useSelector((state) => state.favoritesData)
+  const favoritePokemons = useSelector((state) => state.favoritesData);
   const color = "#000";
   
     const delay = (ms) => new Promise(
@@ -31,7 +32,7 @@ const App = () => {
     const pokemonData = await Promise.all(data.results.map(async (pokemon) => {
       const res = await fetch(`${Constants.urls.baseURL}/${pokemon.name}`)
       const data = await res.json()
-      await delay(2000);
+      await delay(500);
       return data
     }))
   
@@ -39,14 +40,23 @@ const App = () => {
     setLoading(false);
   }
   
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredPokemons = allPokemons.filter(
+    (pokemon) =>
+      pokemon.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
 
   const indexOfLastPokemon = currentPage * pokemonsPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonsPerPage;
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const renderedPokemons = showsAllPokemons ? allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon) : favoritePokemons.list.slice(indexOfFirstPokemon, indexOfLastPokemon);
-  console.log("favorites",   favoritePokemons.list)
-  console.log("current", renderedPokemons)
+  const renderedPokemons = showsAllPokemons ? 
+                           filteredPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon) : 
+                           favoritePokemons.list.slice(indexOfFirstPokemon, indexOfLastPokemon);
+
 
   return (
     <div className="app-container">
@@ -60,6 +70,14 @@ const App = () => {
         />
       </div>
       <h1>{Constants.app.header}</h1>
+      <div className="search-pokemons-container">
+        <input
+          type="text"
+          placeholder={Constants.app.searchPlaceholder}
+          value={searchTerm}
+          onChange={handleInputChange}
+        />
+      </div>
       {pokemonsLoaded ? 
         allPokemons.length === 0 ? null :
       <Btn
@@ -90,6 +108,7 @@ const App = () => {
         <Pagination
           pokemonsPerPage={pokemonsPerPage}
           pokemons={showsAllPokemons ? allPokemons.length : renderedPokemons.length}
+          currentPage={currentPage}
           paginate={paginate}/>
         }
       </div>

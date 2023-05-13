@@ -19,9 +19,22 @@
   z-index: 5;
 }
 
-.header-options-container{
+.top-row-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.search-input{
+  height: 1.8rem;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+  margin: 1rem 0;
+  color:#375853;
+  background-color: #aff3f3;
+  border-radius: 0.3rem;
+  border: 1px solid #efefef;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.089);
 }
 
 .pokedex-container {

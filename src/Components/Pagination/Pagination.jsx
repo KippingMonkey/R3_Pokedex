@@ -6,17 +6,51 @@ const Pagination = ({ pokemonsPerPage, pokemons, currentPage, paginate}) => {
   const pageNumbers = [];
   const numberOfPages = Math.ceil(pokemons / pokemonsPerPage);
 
-  
   for (let i = 1; i <= numberOfPages; i++) {
     pageNumbers.push(i);
   }
  
+  const RenderNumbers = () => {
+    var pageNumbersSlice = [];
+    var renderedNumbers = [];
+
+    if (numberOfPages > 6) {
+      if (currentPage >= numberOfPages - 5) {
+        pageNumbersSlice = pageNumbers.slice(numberOfPages - 6, numberOfPages);
+      }
+      else {
+        pageNumbersSlice = pageNumbers.slice(currentPage - 1, currentPage + 5);
+        pageNumbersSlice.push(<span className="dots">...</span>)
+        pageNumbersSlice.push(numberOfPages)
+      }
+      if (currentPage > 2) {
+        pageNumbersSlice.unshift(<span className="dots">...</span>)
+        pageNumbersSlice.unshift(1)
+        
+      }
+      renderedNumbers = pageNumbersSlice;
+    }
+    else {
+      renderedNumbers = pageNumbers;
+    }
+    return(
+      renderedNumbers.map( (number, index) => (
+        <li key={index} className={number === currentPage ? "page-list-item active" : "page-list-item"}>
+          {number.type === "span" ?  
+          <div className="page-number">
+            {number}
+          </div> :
+          <div onClick={ () => handlePageClick(number)} className="page-number">
+            {number}
+          </div>
+        }
+        </li>
+        ))
+    )
+  }
   const handlePageClick = (pageNumber) => {
-    console.log('Clicked page number:', pageNumber);
   paginate(pageNumber);
   currentPage = pageNumber;
-  console.log('Current page after paginate:', currentPage);
-
   }
 
   const RenderPrevious = () => {
@@ -60,14 +94,8 @@ const Pagination = ({ pokemonsPerPage, pokemons, currentPage, paginate}) => {
       <div className="pagination">
         <ul className="page-list">
           <RenderPrevious />
-          {pageNumbers.map( number => (
-            <li key={number} className={number === currentPage ? "page-list-item active" : "page-list-item"}>
-              <div onClick={ () => handlePageClick(number)} className="page-number">
-                {number}
-              </div>
-            </li>
-            ))}
-         <RenderNext />
+          <RenderNumbers/>
+          <RenderNext />
         </ul>
       </div>
     </>

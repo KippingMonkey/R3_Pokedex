@@ -47,8 +47,8 @@
 }
 
 .dots {
-    color: #de6910;
-    pointer-events: none;
+    color: blanchedalmond;
+    cursor: default;
     margin: 0 4px;
     height: 34px;
     line-height: 34px;

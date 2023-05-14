@@ -13,7 +13,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [pokemonsLoaded, setPokemonsLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showsAllPokemons, setShowsAllPokemons] = useState(true)
+  const [showsAllPokemons, setShowsAllPokemons] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [pokemonsPerPage] = useState(12);
   const favoritePokemons = useSelector((state) => state.favoritesData);
@@ -35,7 +35,7 @@ const App = () => {
       const data = await res.json()
       // await delay(500);
       return data
-    }))
+    }));
   
     setAllPokemons(pokemonData.sort((a, b) => a.id - b.id))
     setLoading(false);

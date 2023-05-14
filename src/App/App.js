@@ -19,9 +19,10 @@ const App = () => {
   const favoritePokemons = useSelector((state) => state.favoritesData);
   const color = "#000";
   
-    const delay = (ms) => new Promise(
-  resolve => setTimeout(resolve, ms)
-  );
+  //Used on lower limits to allow spinner to show
+  //   const delay = (ms) => new Promise(
+  // resolve => setTimeout(resolve, ms)
+  // );
 
   const getPokemons = async () => {
     setPokemonsLoaded(true);
@@ -32,14 +33,13 @@ const App = () => {
     const pokemonData = await Promise.all(data.results.map(async (pokemon) => {
       const res = await fetch(`${Constants.urls.baseURL}/${pokemon.name}`)
       const data = await res.json()
-      await delay(500);
+      // await delay(500);
       return data
     }))
   
     setAllPokemons(pokemonData.sort((a, b) => a.id - b.id))
     setLoading(false);
   }
-  
   
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const indexOfLastPokemon = currentPage * pokemonsPerPage;

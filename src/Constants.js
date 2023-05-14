@@ -13,5 +13,5 @@ export const components = {
 
 export const urls = {
   baseURL: "https://pokeapi.co/api/v2/pokemon",
-  limit: "?limit=1280",
+  limit: "?limit=649",
 }

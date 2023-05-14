@@ -6,6 +6,11 @@ const Pagination = ({ pokemonsPerPage, pokemons, currentPage, paginate}) => {
   const pageNumbers = [];
   const numberOfPages = Math.ceil(pokemons / pokemonsPerPage);
 
+  const handlePageClick = (pageNumber) => {
+    paginate(pageNumber);
+    currentPage = pageNumber;
+    }
+
   for (let i = 1; i <= numberOfPages; i++) {
     pageNumbers.push(i);
   }
@@ -47,10 +52,6 @@ const Pagination = ({ pokemonsPerPage, pokemons, currentPage, paginate}) => {
         </li>
         ))
     )
-  }
-  const handlePageClick = (pageNumber) => {
-  paginate(pageNumber);
-  currentPage = pageNumber;
   }
 
   const RenderPrevious = () => {
